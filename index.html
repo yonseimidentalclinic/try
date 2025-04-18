@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>연세안과 | Yonsei Eye Clinic</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* CSS Reset */
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; font-family: 'Noto Sans KR', sans-serif; }
+    body { color:#333; line-height:1.6; }
+    a { color:inherit; text-decoration:none; }
+    img { max-width:100%; display:block; }
+
+    /* Color Variables */
+    :root {
+      --primary-color: #0067b8;
+      --secondary-color: #fff;
+      --accent-color: #f2a900;
+      --bg-color: #f9f9f9;
+    }
+
+    /* Header */
+    header { background: var(--primary-color); padding:20px 0; position: fixed; width:100%; top:0; z-index:100; }
+    .container { width:90%; max-width:1200px; margin:0 auto; }
+    .logo { color: var(--secondary-color); font-size:1.5rem; font-weight:700; }
+    nav { float:right; }
+    nav ul { list-style:none; display:flex; gap:20px; }
+    nav li a { color: var(--secondary-color); font-weight:500; }
+
+    /* Hero Section */
+    .hero { height:100vh; background: url('hero-bg.jpg') center/cover no-repeat; display:flex; align-items:center; justify-content:center; }
+    .hero .content { background:rgba(255,255,255,0.85); padding:40px; border-radius:8px; text-align:center; }
+    .hero h1 { font-size:2.5rem; margin-bottom:10px; }
+    .hero p { font-size:1.1rem; margin-bottom:20px; }
+    .hero .btn { background:var(--accent-color); color:#fff; padding:12px 24px; border-radius:4px; font-weight:600; }
+
+    /* Services Section */
+    .services { padding:80px 0; background:var(--bg-color); }
+    .services h2 { text-align:center; font-size:2rem; margin-bottom:40px; }
+    .services .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap:20px; }
+    .service-card { background:#fff; padding:20px; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1); text-align:center; }
+    .service-card img { margin-bottom:20px; }
+    .service-card h3 { margin-bottom:10px; }
+    .service-card p { font-size:0.95rem; }
+
+    /* About Section */
+    .about { padding:80px 0; }
+    .about .flex { display:flex; flex-wrap:wrap; gap:40px; align-items:center; }
+    .about .text { flex:1; }
+    .about .image { flex:1; }
+
+    /* Contact Section */
+    .contact { padding:80px 0; background:var(--bg-color); }
+    .contact h2 { text-align:center; font-size:2rem; margin-bottom:40px; }
+    .contact form { max-width:600px; margin:0 auto; display:grid; gap:20px; }
+    .contact input, .contact textarea { padding:12px; border:1px solid #ccc; border-radius:4px; font-size:1rem; }
+    .contact button { background:var(--primary-color); color:#fff; padding:14px; border:none; border-radius:4px; font-weight:600; cursor:pointer; }
+
+    /* Footer */
+    footer { background:#222; color:#ccc; padding:40px 0; }
+    footer .container { display:flex; flex-wrap:wrap; gap:20px; justify-content: space-between; }
+    footer .col { flex:1; min-width:200px; }
+    footer a { color:#ccc; }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <a href="#" class="logo">연세안과</a>
+      <nav>
+        <ul>
+          <li><a href="#services">진료안내</a></li>
+          <li><a href="#about">클리닉소개</a></li>
+          <li><a href="#contact">예약문의</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <div class="content">
+      <h1>안전하고 신뢰받는 안과 전문 진료</h1>
+      <p>최신 장비와 전문 의료진이 함께합니다.</p>
+      <a href="#contact" class="btn">온라인 예약하기</a>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="services" id="services">
+    <div class="container">
+      <h2>진료안내</h2>
+      <div class="grid">
+        <div class="service-card">
+          <img src="icons/checkup.svg" alt="정기검진">
+          <h3>정기검진</h3>
+          <p>시력 검사, 안압 검사, 망막 검사 등 포괄적인 검진 제공</p>
+        </div>
+        <div class="service-card">
+          <img src="icons/cataract.svg" alt="백내장 수술">
+          <h3>백내장 수술</h3>
+          <p>최신 레이저 기술을 이용한 정밀하고 안전한 수술</p>
+        </div>
+        <div class="service-card">
+          <img src="icons/lens.svg" alt="라식·라섹">
+          <h3>라식·라섹</h3>
+          <p>맞춤형 레이저를 통한 시력 교정 수술</p>
+        </div>
+        <div class="service-card">
+          <img src="icons/retina.svg" alt="망막질환">
+          <h3>망막질환 치료</h3>
+          <p>당뇨망막병증, 황반변성 등 최첨단 치료</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="flex">
+        <div class="text">
+          <h2>연세안과 소개</h2>
+          <p>연세안과는 환자 중심의 진료를 최우선으로 여기며, 최신 장비와 전문 의료진을 갖추고 있습니다. 언제나 환자의 안전과 만족을 위해 최선을 다합니다.</p>
+        </div>
+        <div class="image">
+          <img src="clinic.jpg" alt="연세안과 전경">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <h2>예약문의</h2>
+      <form action="#" method="post">
+        <input type="text" name="name" placeholder="이름" required>
+        <input type="tel" name="phone" placeholder="연락처" required>
+        <input type="email" name="email" placeholder="이메일">
+        <textarea name="message" rows="5" placeholder="문의내용"></textarea>
+        <button type="submit">예약요청하기</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="col">
+        <h4>연세안과</h4>
+        <p>경기도 고양시 일산동구 일산로 46 남정씨티프라자</p>
+        <p>전화: 031-xxx-xxxx</p>
+      </div>
+      <div class="col">
+        <h4>진료시간</h4>
+        <p>월~금: 9:00 - 18:00</p>
+        <p>토: 9:00 - 13:00</p>
+        <p>일/공휴일: 휴진</p>
+      </div>
+      <div class="col">
+        <h4>소셜</h4>
+        <a href="#">페이스북</a><br>
+        <a href="#">인스타그램</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JS -->
+  <script>
+    // 추후 모바일 네비게이션 토글 스크립트 추가
+  </script>
+
+</body>
+</html>
