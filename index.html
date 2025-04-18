@@ -2,78 +2,118 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>연세안과 | Yonsei Eye Clinic</title>
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    /* CSS Reset */
+    /* Reset & Base */
     *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-    html { scroll-behavior: smooth; font-family: 'Noto Sans KR', sans-serif; }
-    body { color:#333; line-height:1.6; }
-    a { color:inherit; text-decoration:none; }
-    img { max-width:100%; display:block; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Montserrat', sans-serif; color:#333; background:#f7f9fc; line-height:1.6; }
+    a { text-decoration:none; color:inherit; }
+    img { display:block; max-width:100%; }
 
-    /* Color Variables */
+    /* Color Palette */
     :root {
-      --primary-color: #0067b8;
-      --secondary-color: #fff;
-      --accent-color: #f2a900;
-      --bg-color: #f9f9f9;
+      --primary: #004e92;
+      --secondary: #000428;
+      --accent: #00d4ff;
+      --light-bg: #ffffff;
+      --shadow: rgba(0, 0, 0, 0.1);
     }
 
-    /* Header */
-    header { background: var(--primary-color); padding:20px 0; position: fixed; width:100%; top:0; z-index:100; }
+    /* Header & Nav */
+    header { position:sticky; top:0; width:100%; background:var(--light-bg); backdrop-filter:blur(10px); box-shadow:0 2px 10px var(--shadow); z-index:100; }
     .container { width:90%; max-width:1200px; margin:0 auto; }
-    .logo { color: var(--secondary-color); font-size:1.5rem; font-weight:700; }
-    nav { float:right; }
-    nav ul { list-style:none; display:flex; gap:20px; }
-    nav li a { color: var(--secondary-color); font-weight:500; }
+    .header-inner { display:flex; align-items:center; justify-content:space-between; padding:1rem 0; }
+    .logo { font-size:1.5rem; font-weight:700; color:var(--primary); }
+    nav ul { display:flex; gap:1.5rem; }
+    nav li a { font-weight:600; position:relative; }
+    nav li a::after {
+      content: '';
+      position:absolute; bottom:-4px; left:0; width:0; height:2px; background:var(--accent);
+      transition: width .3s;
+    }
+    nav li a:hover::after { width:100%; }
+
+    /* Mobile Nav Toggle */
+    .nav-toggle { display:none; cursor:pointer; }
+    .nav-toggle span, .nav-toggle span::before, .nav-toggle span::after {
+      display:block; background:var(--secondary); height:2px; width:25px; border-radius:2px; transition: .3s;
+    }
+    .nav-toggle span::before, .nav-toggle span::after {
+      content: '';
+      position:relative;
+    }
+    .nav-toggle span::before { top:-8px; }
+    .nav-toggle span::after { top:6px; }
+
+    @media (max-width:768px) {
+      .nav-toggle { display:block; }
+      nav { position:absolute; top:100%; left:0; width:100%; background:var(--light-bg); max-height:0; overflow:hidden; transition:max-height .4s; }
+      nav.open { max-height:300px; }
+      nav ul { flex-direction:column; padding:1rem 0; }
+      nav li { margin-bottom:1rem; text-align:center; }
+    }
 
     /* Hero Section */
-    .hero { height:100vh; background: url('hero-bg.jpg') center/cover no-repeat; display:flex; align-items:center; justify-content:center; }
-    .hero .content { background:rgba(255,255,255,0.85); padding:40px; border-radius:8px; text-align:center; }
-    .hero h1 { font-size:2.5rem; margin-bottom:10px; }
-    .hero p { font-size:1.1rem; margin-bottom:20px; }
-    .hero .btn { background:var(--accent-color); color:#fff; padding:12px 24px; border-radius:4px; font-weight:600; }
+    .hero { display:flex; align-items:center; justify-content:center; height:90vh; background:linear-gradient(to bottom right, var(--primary), var(--secondary)), url('hero-bg.jpg') center/cover no-repeat; position:relative; color:#fff; text-align:center; }
+    .hero::before { content:''; position:absolute; inset:0; background:rgba(0,0,0,0.4); }
+    .hero-content { position:relative; z-index:1; max-width:600px; padding:2rem; }
+    .hero h1 { font-size:2.8rem; margin-bottom:1rem; font-weight:700; }
+    .hero p { font-size:1.1rem; margin-bottom:2rem; }
+    .btn { display:inline-block; background:var(--accent); color:#fff; padding:0.75rem 2rem; border-radius:50px; font-weight:600; transition: transform .3s; }
+    .btn:hover { transform: scale(1.05); }
 
-    /* Services Section */
-    .services { padding:80px 0; background:var(--bg-color); }
-    .services h2 { text-align:center; font-size:2rem; margin-bottom:40px; }
-    .services .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap:20px; }
-    .service-card { background:#fff; padding:20px; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1); text-align:center; }
-    .service-card img { margin-bottom:20px; }
-    .service-card h3 { margin-bottom:10px; }
-    .service-card p { font-size:0.95rem; }
+    /* Section Title */
+    .section-title { text-align:center; margin-bottom:2rem; font-size:2rem; font-weight:600; color:var(--secondary); }
 
-    /* About Section */
-    .about { padding:80px 0; }
-    .about .flex { display:flex; flex-wrap:wrap; gap:40px; align-items:center; }
-    .about .text { flex:1; }
-    .about .image { flex:1; }
+    /* Services */
+    .services { padding:4rem 0; background:var(--light-bg); }
+    .services .grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:2rem; }
+    .service-card { background:#fff; padding:2rem; border-radius:12px; box-shadow:0 4px 20px var(--shadow); text-align:center; transition: transform .3s, box-shadow .3s; }
+    .service-card:hover { transform: translateY(-10px); box-shadow:0 8px 30px var(--shadow); }
+    .service-card img { height:80px; margin-bottom:1.5rem; }
+    .service-card h3 { font-size:1.25rem; margin-bottom:0.75rem; color:var(--primary); }
+    .service-card p { font-size:0.95rem; color:#555; }
 
-    /* Contact Section */
-    .contact { padding:80px 0; background:var(--bg-color); }
-    .contact h2 { text-align:center; font-size:2rem; margin-bottom:40px; }
-    .contact form { max-width:600px; margin:0 auto; display:grid; gap:20px; }
-    .contact input, .contact textarea { padding:12px; border:1px solid #ccc; border-radius:4px; font-size:1rem; }
-    .contact button { background:var(--primary-color); color:#fff; padding:14px; border:none; border-radius:4px; font-weight:600; cursor:pointer; }
+    /* About */
+    .about { padding:4rem 0; }
+    .about .flex { display:flex; align-items:center; gap:2rem; flex-wrap:wrap; }
+    .about .text { flex:1 1 300px; }
+    .about .text h2 { margin-bottom:1rem; font-size:2rem; color:var(--primary); }
+    .about .text p { color:#555; }
+    .about .image { flex:1 1 300px; border-radius:12px; overflow:hidden; box-shadow:0 4px 20px var(--shadow); }
+
+    /* Contact */
+    .contact { padding:4rem 0; background:var(--light-bg); }
+    .contact form { max-width:600px; margin:0 auto; display:grid; gap:1.25rem; }
+    .contact input, .contact textarea { padding:1rem; border:1px solid #ccc; border-radius:8px; font-size:1rem; resize:none; }
+    .contact button { background:var(--primary); color:#fff; padding:1rem; border:none; border-radius:50px; font-weight:600; cursor:pointer; transition: background .3s; }
+    .contact button:hover { background:var(--secondary); }
 
     /* Footer */
-    footer { background:#222; color:#ccc; padding:40px 0; }
-    footer .container { display:flex; flex-wrap:wrap; gap:20px; justify-content: space-between; }
-    footer .col { flex:1; min-width:200px; }
-    footer a { color:#ccc; }
+    footer { background:var(--secondary); color:#ddd; padding:3rem 0; }
+    footer .container { display:flex; flex-wrap:wrap; gap:2rem; }
+    footer .col { flex:1 1 200px; }
+    footer h4 { font-size:1.1rem; margin-bottom:1rem; color:#fff; }
+    footer p, footer a { font-size:0.9rem; line-height:1.5; }
+    footer a:hover { text-decoration:underline; }
+
+    /* Fade-in Animation */
+    .fade-in { opacity:0; transform: translateY(20px); transition: opacity .6s ease-out, transform .6s ease-out; }
+    .fade-in.visible { opacity:1; transform: translateY(0); }
   </style>
 </head>
 <body>
-
   <!-- Header -->
   <header>
-    <div class="container">
+    <div class="container header-inner">
       <a href="#" class="logo">연세안과</a>
-      <nav>
+      <div class="nav-toggle" id="nav-toggle"><span></span></div>
+      <nav id="nav">
         <ul>
           <li><a href="#services">진료안내</a></li>
           <li><a href="#about">클리닉소개</a></li>
@@ -85,7 +125,7 @@
 
   <!-- Hero -->
   <section class="hero" id="hero">
-    <div class="content">
+    <div class="hero-content fade-in">
       <h1>안전하고 신뢰받는 안과 전문 진료</h1>
       <p>최신 장비와 전문 의료진이 함께합니다.</p>
       <a href="#contact" class="btn">온라인 예약하기</a>
@@ -95,27 +135,27 @@
   <!-- Services -->
   <section class="services" id="services">
     <div class="container">
-      <h2>진료안내</h2>
+      <h2 class="section-title fade-in">진료안내</h2>
       <div class="grid">
-        <div class="service-card">
+        <div class="service-card fade-in">
           <img src="icons/checkup.svg" alt="정기검진">
           <h3>정기검진</h3>
-          <p>시력 검사, 안압 검사, 망막 검사 등 포괄적인 검진 제공</p>
+          <p>시력·안압·망막 검사 등 포괄적 검진</p>
         </div>
-        <div class="service-card">
+        <div class="service-card fade-in">
           <img src="icons/cataract.svg" alt="백내장 수술">
           <h3>백내장 수술</h3>
-          <p>최신 레이저 기술을 이용한 정밀하고 안전한 수술</p>
+          <p>정밀 레이저 기술을 이용한 안전 수술</p>
         </div>
-        <div class="service-card">
+        <div class="service-card fade-in">
           <img src="icons/lens.svg" alt="라식·라섹">
           <h3>라식·라섹</h3>
-          <p>맞춤형 레이저를 통한 시력 교정 수술</p>
+          <p>맞춤형 레이저 시력 교정</p>
         </div>
-        <div class="service-card">
-          <img src="icons/retina.svg" alt="망막질환">
+        <div class="service-card fade-in">
+          <img src="icons/retina.svg" alt="망막질환 치료">
           <h3>망막질환 치료</h3>
-          <p>당뇨망막병증, 황반변성 등 최첨단 치료</p>
+          <p>당뇨망막병증·황반변성 등 전문 치료</p>
         </div>
       </div>
     </div>
@@ -124,12 +164,13 @@
   <!-- About -->
   <section class="about" id="about">
     <div class="container">
+      <h2 class="section-title fade-in">연세안과 소개</h2>
       <div class="flex">
-        <div class="text">
-          <h2>연세안과 소개</h2>
-          <p>연세안과는 환자 중심의 진료를 최우선으로 여기며, 최신 장비와 전문 의료진을 갖추고 있습니다. 언제나 환자의 안전과 만족을 위해 최선을 다합니다.</p>
+        <div class="text fade-in">
+          <h2>환자 중심의 전문 진료</h2>
+          <p>최신 장비와 경험豊富한 의료진이 언제나 환자 안전과 만족을 최우선으로 합니다.</p>
         </div>
-        <div class="image">
+        <div class="image fade-in">
           <img src="clinic.jpg" alt="연세안과 전경">
         </div>
       </div>
@@ -139,12 +180,12 @@
   <!-- Contact -->
   <section class="contact" id="contact">
     <div class="container">
-      <h2>예약문의</h2>
-      <form action="#" method="post">
+      <h2 class="section-title fade-in">예약문의</h2>
+      <form class="fade-in" action="#" method="post">
         <input type="text" name="name" placeholder="이름" required>
         <input type="tel" name="phone" placeholder="연락처" required>
         <input type="email" name="email" placeholder="이메일">
-        <textarea name="message" rows="5" placeholder="문의내용"></textarea>
+        <textarea name="message" rows="4" placeholder="문의내용"></textarea>
         <button type="submit">예약요청하기</button>
       </form>
     </div>
@@ -153,18 +194,18 @@
   <!-- Footer -->
   <footer>
     <div class="container">
-      <div class="col">
+      <div class="col fade-in">
         <h4>연세안과</h4>
         <p>경기도 고양시 일산동구 일산로 46 남정씨티프라자</p>
         <p>전화: 031-xxx-xxxx</p>
       </div>
-      <div class="col">
+      <div class="col fade-in">
         <h4>진료시간</h4>
         <p>월~금: 9:00 - 18:00</p>
         <p>토: 9:00 - 13:00</p>
         <p>일/공휴일: 휴진</p>
       </div>
-      <div class="col">
+      <div class="col fade-in">
         <h4>소셜</h4>
         <a href="#">페이스북</a><br>
         <a href="#">인스타그램</a>
@@ -172,10 +213,20 @@
     </div>
   </footer>
 
-  <!-- JS -->
   <script>
-    // 추후 모바일 네비게이션 토글 스크립트 추가
-  </script>
+    // Mobile Nav Toggle
+    const toggle = document.getElementById('nav-toggle');
+    const nav = document.getElementById('nav');
+    toggle.addEventListener('click', () => nav.classList.toggle('open'));
 
+    // Fade-in on scroll
+    const faders = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.2 });
+    faders.forEach(fader => observer.observe(fader));
+  </script>
 </body>
 </html>
